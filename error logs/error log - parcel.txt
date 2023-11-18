@@ -1,0 +1,90 @@
+PS C:\Users\Rowan\Desktop\Career Foundry\4 Client-Side Programming & React\myFlix-client> parcel src/index.html
+(node:8764) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Server running at http://localhost:1234
+🚨 Build failed.
+
+Error: Failed to install @parcel/transformer-sass: npm failed to install
+modules: Child process failed - npm
+WARN cleanup Failed to remove some directories [
+npm WARN cleanup   [
+npm WARN cleanup     'C:\\\Users\\\Rowan\\\Desktop\\\Career Foundry\\\4
+Client-Side Programming &
+React\\\myFlix-client\\\node_modules\\\msgpackr-extract',
+npm WARN cleanup     [Error: EBUSY: resource busy or locked, rmdir
+'C:\Users\Rowan\Desktop\Career Foundry\4 Client-Side Programming &
+React\myFlix-client\node_modules\msgpackr-extract'] {
+npm WARN cleanup       errno: -4082,
+npm
+WARN cleanup
+code: 'EBUSY',
+npm WARN cleanup       syscall: 'rmdir',
+npm WARN cleanup       path: 'C:\\\Users\\\Rowan\\\Desktop\\\Career
+Foundry\\\4 Client-Side Programming &
+React\\\myFlix-client\\\node_modules\\\msgpackr-extract'
+npm WARN cleanup
+}
+npm WARN cleanup   ],
+npm
+WARN cleanup   [
+npm WARN
+cleanup     'C:\\\Users\\\Rowan\\\Desktop\\\Career Foundry\\\4 Client-Side
+Programming & React\\\myFlix-client\\\node_modules\\\@parcel',
+npm WARN cleanup     [Error: EPERM: operation not permitted, rmdir
+'C:\Users\Rowan\Desktop\Career Foundry\4 Client-Side Programming &
+React\myFlix-client\node_modules\@parcel\core\test'] {
+npm WARN cleanup       errno: -4048,
+npm WARN
+cleanup       code: 'EPERM',
+npm WARN
+cleanup       syscall: 'rmdir',
+npm WARN cleanup       path: 'C:\\\Users\\\Rowan\\\Desktop\\\Career
+Foundry\\\4 Client-Side Programming &
+React\\\myFlix-client\\\node_modules\\\@parcel\\\core\\\test'
+npm WARN cleanup     }
+npm WARN
+cleanup   ]
+npm WARN
+cleanup ]
+npm ERR!
+code 1
+npm ERR! path C:\Users\Rowan\Desktop\Career Foundry\4 Client-Side
+Programming & React\myFlix-client\node_modules\lmdb
+npm
+ERR! command failed
+npm ERR! command C:\WINDOWS\system32\cmd.exe /d /s /c
+node-gyp-build-optional-packages
+npm ERR!
+'React\myFlix-client\node_modules\.bin\' is not recognized as an internal or
+ external command,
+npm ERR! operable program or batch file.
+npm ERR!
+node:internal/modules/cjs/loader:1141
+npm ERR!   throw err;
+npm ERR!
+^
+npm ERR!
+npm ERR! Error: Cannot find module 'C:\Users\Rowan\Desktop\Career
+Foundry\node-gyp-build-optional-packages\bin.js'
+npm
+ERR!     at Module._resolveFilename
+(node:internal/modules/cjs/loader:1138:15)
+npm ERR!
+at Module._load (node:internal/modules/cjs/loader:979:27)
+npm ERR!     at Function.executeUserEntryPoint [as runMain]
+(node:internal/modules/run_main:122:12)
+npm
+ERR!     at node:internal/main/run_main_module:28:49 {
+npm ERR!
+code: 'MODULE_NOT_FOUND',
+npm ERR!
+requireStack: []
+npm ERR! }
+npm
+ERR!
+npm ERR!
+Node.js v21.0.0
+
+npm
+ERR! A complete log of this run can be found in:
+C:\Users\Rowan\AppData\Local\npm-cache\\_logs\2023-11-18T23_39_47_462Z-debug-0.log
