@@ -28889,7 +28889,111 @@ if ("development" === 'production') {
     }
   };
 }
-},{"react-dom":"../node_modules/react-dom/index.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"react-dom":"../node_modules/react-dom/index.js"}],"components/movie-card/movie-card.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.MovieCard = void 0;
+var MovieCard = exports.MovieCard = function MovieCard(_ref) {
+  var movieData = _ref.movieData,
+    onMovieClick = _ref.onMovieClick;
+  return /*#__PURE__*/React.createElement("div", {
+    onClick: function onClick() {
+      onMovieClick(movieData);
+    }
+  }, movieData.title);
+};
+},{}],"components/movie-view/movie-view.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.MovieView = void 0;
+var MovieView = exports.MovieView = function MovieView(_ref) {
+  var movie = _ref.movie,
+    onBackClick = _ref.onBackClick;
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("img", {
+    src: movie.image,
+    style: {
+      width: "15rem",
+      height: "20rem"
+    },
+    alt: ""
+  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", null, "Title:"), /*#__PURE__*/React.createElement("span", null, movie.title)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", null, "Description:"), /*#__PURE__*/React.createElement("span", null, movie.description)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", null, "Genre:"), /*#__PURE__*/React.createElement("span", null, movie.genre)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", null, "Director:"), /*#__PURE__*/React.createElement("span", null, movie.director)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
+    onClick: onBackClick
+  }, "Back")));
+};
+},{}],"components/main-view/main-view.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.MainView = void 0;
+var _react = require("react");
+var _movieCard = require("../movie-card/movie-card");
+var _movieView = require("../movie-view/movie-view");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; } //call useState function to document
+var MainView = exports.MainView = function MainView() {
+  var _useState = (0, _react.useState)([{
+      id: 1,
+      title: "Palmer",
+      description: "An ex-convict strikes up a friendship with a boy from a troubled home.",
+      image: "https://de.web.img3.acsta.net/pictures/20/12/18/10/24/4751126.jpg",
+      genre: "Drama",
+      director: "Fisher Stevens"
+    }, {
+      id: 2,
+      title: "Dunkirk",
+      description: "Allied soldiers from Belgium, the British Commonwealth and Empire, and France are surrounded by the German Army and evacuated during a fierce battle in World War II.",
+      image: "https://m.media-amazon.com/images/M/MV5BN2YyZjQ0NTEtNzU5MS00NGZkLTg0MTEtYzJmMWY3MWRhZjM2XkEyXkFqcGdeQXVyMDA4NzMyOA@@._V1_.jpg",
+      genre: "Historical drama",
+      director: "Christopher Nolan"
+    }, {
+      id: 3,
+      title: "Forrest Gump",
+      description: "The history of the United States from the 1950s to the '70s unfolds from the perspective of an Alabama man with an IQ of 75, who yearns to be reunited with his childhood sweetheart.",
+      image: "https://static.kino.de/wp-content/uploads/2019/10/forrest-gump-1994-filmplakat.jpg",
+      genre: "Drama",
+      director: "Robert Zemeckis"
+    }]),
+    _useState2 = _slicedToArray(_useState, 2),
+    movies = _useState2[0],
+    setMovies = _useState2[1];
+  var _useState3 = (0, _react.useState)(null),
+    _useState4 = _slicedToArray(_useState3, 2),
+    selectedMovie = _useState4[0],
+    setSelectedMovie = _useState4[1];
+  if (selectedMovie) {
+    return /*#__PURE__*/React.createElement(MovieView, {
+      movie: selectedMovie,
+      onBackClick: function onBackClick() {
+        return setSelectedMovie(null);
+      }
+    });
+  }
+  if (movies.length === 0) {
+    return /*#__PURE__*/React.createElement("div", null, "The list is empty!");
+  }
+  return /*#__PURE__*/React.createElement("div", null, movies.map(function (movie) {
+    return /*#__PURE__*/React.createElement(_movieCard.MovieCard, {
+      movieData: movie,
+      key: movie.id,
+      onMovieClick: function onMovieClick(newSelectedMovie) {
+        setSelectedMovie(newSelectedMovie);
+      }
+    });
+  }));
+};
+},{"react":"../node_modules/react/index.js","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 function getBundleURLCached() {
   if (!bundleURL) {
@@ -28948,14 +29052,13 @@ module.hot.accept(reloadCSS);
 "use strict";
 
 var _client = require("react-dom/client");
+var _mainView = require("./components/main-view/main-view");
 require("./index.scss");
 // Import statement to indicate that you need to bundle `./index.scss`
 
 // Main component (will eventually use all the others)
 var MyFlixApplication = function MyFlixApplication() {
-  return /*#__PURE__*/React.createElement("div", {
-    className: "my-flix"
-  }, /*#__PURE__*/React.createElement("div", null, "Good morning"));
+  return /*#__PURE__*/React.createElement(_mainView.MainView, null);
 };
 
 // Finds the root of your app
@@ -28964,7 +29067,7 @@ var root = (0, _client.createRoot)(container);
 
 // Tells React to render your app in the root DOM element
 root.render( /*#__PURE__*/React.createElement(MyFlixApplication, null));
-},{"react-dom/client":"../node_modules/react-dom/client.js","./index.scss":"index.scss"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react-dom/client":"../node_modules/react-dom/client.js","./components/main-view/main-view":"components/main-view/main-view.jsx","./index.scss":"index.scss"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -28989,7 +29092,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57663" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57604" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
