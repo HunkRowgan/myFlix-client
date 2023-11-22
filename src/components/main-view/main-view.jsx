@@ -1,6 +1,6 @@
 import { useState } from "react"; //call useState function to document
 import { MovieCard} from "../movie-card/movie-card";
-import {movieView} from "../movie-view/movie-view";
+import { MovieView} from "../movie-view/movie-view";
 
 export const MainView = () => {
     const [movies, setMovies] = useState([

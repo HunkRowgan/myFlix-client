@@ -28973,7 +28973,7 @@ var MainView = exports.MainView = function MainView() {
     selectedMovie = _useState4[0],
     setSelectedMovie = _useState4[1];
   if (selectedMovie) {
-    return /*#__PURE__*/React.createElement(MovieView, {
+    return /*#__PURE__*/React.createElement(_movieView.MovieView, {
       movie: selectedMovie,
       onBackClick: function onBackClick() {
         return setSelectedMovie(null);
@@ -29092,7 +29092,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57604" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49788" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
