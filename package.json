@@ -11,10 +11,5 @@
     "process": "^0.11.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "parcel-bundler": "^1.12.5",
-    "parcel-transformer-lit-sass": "^0.1.0",
-    "sass": "^1.69.5"
   }
 }
