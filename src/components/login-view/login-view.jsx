@@ -2,16 +2,16 @@ import React from "react";
 import {useState} from "react";
 
 export const LoginView = ({ onLoggedIn }) => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const [Username, setUsername] = useState("");
+    const [Password, setPassword] = useState("");
 
     const handleSubmit = (event) => {
         event.preventDefault(); // prevents default behaviour of the form which is to reload whole page
     
 
     const data = {
-        username: username,
-        password: password
+        Username: Username,
+        Password: Password
     };
 
     fetch("https://hunkrowganmovieapi.onrender.com/login", {
@@ -29,18 +29,18 @@ export const LoginView = ({ onLoggedIn }) => {
     return (
       <form onSubmit={handleSubmit}>
         <label>
-          username:
+          Username:
           <input 
            type="text"
-           value={username}
+           value={Username}
            onChange={(e) => setUsername(e.target.value)}
            />
         </label>
         <label>
           Password:
           <input
-           type="password"
-           value={password}
+           type="Password"
+           value={Password}
            onChange={(e) => setPassword(e.target.value)}
           />
         </label>
