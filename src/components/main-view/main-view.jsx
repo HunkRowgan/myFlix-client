@@ -17,8 +17,9 @@ export const MainView = () => {
       if (!token) {
         return;
       }
-      fetch("https://hunkrowganmovieapi.onrender.com/movies")/*, {
-        headers: { Authorization: `Bearer ${token}` }*/
+      fetch("https://hunkrowganmovieapi.onrender.com/movies", {
+        headers: { Authorization: `Bearer ${token}` },
+    })
         .then((response) => response.json())
         .then((data) => {
           const moviesFromApi = data.map((movie) => {
@@ -35,7 +36,7 @@ export const MainView = () => {
         setMovies(moviesFromApi);
     
 
-    }, []);
+    }), [];
     }, [token]);
 
     if (!user) {
