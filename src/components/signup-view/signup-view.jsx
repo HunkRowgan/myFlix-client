@@ -1,4 +1,5 @@
 import { useState} from "react";
+import './signup-view.scss';
 
 export const SignupView = () => {
     const [username, setUsername] = useState("");
@@ -19,7 +20,7 @@ export const SignupView = () => {
             Bio: bio
         };
         
-        fetch("SIGNUP_URL", {
+        fetch("https://hunkrowganmovieapi.onrender.com/users", {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
@@ -85,7 +86,12 @@ export const SignupView = () => {
         />
       </label>
 
-        <button type="submit"></button>
+        <button
+            type="submit"
+            className="submit-button"
+        >
+            Submit
+            </button>
         </form>
     );
 };
