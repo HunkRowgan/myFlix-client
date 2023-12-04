@@ -2,46 +2,60 @@ import React from "react";
 import {useState} from "react";
 
 export const LoginView = ({ onLoggedIn }) => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const [Username, setUsername] = useState("");
+    const [Password, setPassword] = useState("");
 
     const handleSubmit = (event) => {
         event.preventDefault(); // prevents default behaviour of the form which is to reload whole page
     
 
     const data = {
-        username: username,
-        password: password
+        Username: Username,
+        Password: Password
     };
 
     fetch("https://hunkrowganmovieapi.onrender.com/login", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(data)
-        }).then((response) => {
-            if (response.ok) {
-                onLoggedIn(username);
-            } else {
-                alert("Login failed");
-            }
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Login response: ", data);
+          if(data.user) {
+            localStorage.setItem("user", JSON.stringify(data.user));
+            localStorage.setItem("token", data.token);
+            onLoggedIn(data.user, data.token);
+          }
+          else {
+            alert("No such user");
+          }
+        })
+        .catch((e) => {
+          alert("Something went wrong");
         });
-    };
+      }
 
     return (
       <form onSubmit={handleSubmit}>
         <label>
-          username:
+          Username:
           <input 
            type="text"
-           value={username}
+           value={Username}
            onChange={(e) => setUsername(e.target.value)}
+           required
            />
         </label>
         <label>
           Password:
           <input
-           type="password"
-           value={password}
+           type="Password"
+           value={Password}
            onChange={(e) => setPassword(e.target.value)}
+           required
           />
         </label>
         <button type="submit">Submit</button>
