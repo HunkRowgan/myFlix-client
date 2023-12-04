@@ -1,39 +1,35 @@
 import './movie-view.scss';
+import { Button, Col, Container, Card, Row } from "react-bootstrap";
+
 
 export const MovieView = ({ movie, onBackClick }) => {
     return (
-      <div>
-        <div>
-          <img
-            src={movie.image}
-            style={{ width: "15rem", height: "20rem" }}
-            alt=""
-          />
-        </div>
-        <div>
-          <span>Title: </span>
-          <span>{movie.title}</span>
-        </div>
-        <div>
-          <span>Description: </span>
-          <span>{movie.description}</span>
-        </div>
-        <div>
-          <span>Genre: </span>
-          <span>{movie.genre}</span>
-        </div>
-        <div>
-          <span>Director: </span>
-          <span>{movie.director}</span>
-        </div>
-        <div>
-          <button
-            onClick={onBackClick}
-            className="back-button"
-            style={{ cursor: "pointer"}}
-            >
-              Back</button>
-        </div>
-      </div>
+      <Container>
+        <Row>
+          <Col>
+            <Card className="">
+              <Row>
+                <Col>
+              <Card.Img
+                className="w-100"
+                src={movie.image}
+                style={{ width: "15rem", height: "20rem" }}
+                alt=""
+              />
+          </Col>
+          <Col>
+          <Card.Body>
+            <Card.Title className="mt-2"><span className='text-title'>Title:</span>{movie.Title}</Card.Title>
+            <Card.Text><span className='text-title'>Description:</span> {movie.Description}</Card.Text>
+            <Card.Text><span className='text-title'>Genre:</span> {movie.Genre}</Card.Text>
+            <Card.Text><span className='text-title'>Director:</span> {movie.Director}</Card.Text>
+            <Button className='close-open-btn' onClick={onBackClick}>Back</Button>
+          </Card.Body>
+          </Col>
+          </Row>
+        </Card>
+        </Col>
+      </Row>
+    </Container>
     );
   };

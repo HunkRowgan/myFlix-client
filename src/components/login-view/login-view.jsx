@@ -2,6 +2,9 @@ import React from "react";
 import {useState} from "react";
 import './login-view.scss';
 
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+
 export const LoginView = ({ onLoggedIn }) => {
     const [Username, setUsername] = useState("");
     const [Password, setPassword] = useState("");
@@ -18,7 +21,7 @@ export const LoginView = ({ onLoggedIn }) => {
     fetch("https://hunkrowganmovieapi.onrender.com/login", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(data)
         })
@@ -40,31 +43,33 @@ export const LoginView = ({ onLoggedIn }) => {
       }
 
     return (
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username:
-          <input 
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="formUsername">
+          <Form.Label>Username:</Form.Label>
+          <Form.Control
            type="text"
            value={Username}
            onChange={(e) => setUsername(e.target.value)}
            required
+           minLength="3"
            />
-        </label>
-        <label>
-          Password:
-          <input
-           type="Password"
+        </Form.Group>
+
+        <Form.Group controlId="formPassword">
+          <Form.Label>Password:</Form.Label>
+          <Form.Control
+           type="password"
            value={Password}
            onChange={(e) => setPassword(e.target.value)}
            required
           />
-        </label>
-        <button
+        </Form.Group>
+        <Button
+        variant="primary"
         type="submit"
-        className="submit-button"
         >
           Submit
-          </button>
-      </form>
+          </Button>
+      </Form>
     );
   };
