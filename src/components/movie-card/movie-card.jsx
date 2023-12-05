@@ -1,9 +1,16 @@
 import PropTypes from "prop-types"; //import PropTypes library
 import { Button, Card } from "react-bootstrap";
 import { useBootstrapBreakpoints } from "react-bootstrap/esm/ThemeProvider";
+import { Link } from "react-router-dom";
 
 //movieCard function component
-export const MovieCard = ({ movieData, onMovieClick }) => {
+export const MovieCard = ({ movie }) => {
+  console.log(movie);
+
+  if (!movie) {
+    return null; // or some default representation for no data
+  }
+
     return ( 
 
     /*  
@@ -21,12 +28,11 @@ export const MovieCard = ({ movieData, onMovieClick }) => {
     <Card className="h-100">
       <Card.Img variant="top" src={useBootstrapBreakpoints.image} />
       <Card.Body>
-        <Card.Title>{movieData.Title}</Card.Title>
-        <Card.Text>{movieData.Description}</Card.Text>
-        <Button onClick={() => onMovieClick(movieData)}
-        variant="link">
-          Open
-          </Button>
+        <Card.Title>{movie.Title}</Card.Title>
+        <Card.Text>{movie.Description}</Card.Text>
+        <Link to={`/movies/${encodeURIComponent(movie._id)}`}>    
+        <Button className='close-open-button'>Open</Button>
+        </Link>
       </Card.Body>
     </Card>
   );
@@ -34,8 +40,8 @@ export const MovieCard = ({ movieData, onMovieClick }) => {
 
 // Define all the props constraints for MovieCard
 MovieCard.propTypes = {
-  movieData: PropTypes.shape({
-    Title: PropTypes.string
-  }).isRequired,
-  onMovieClick: PropTypes.func.isRequired
-};
+  movie: PropTypes.shape({ 
+    Title: PropTypes.string.isRequired,
+    ImagePath: PropTypes.string.isRequired,
+    Description: PropTypes.string.isRequired}).isRequired
+}
