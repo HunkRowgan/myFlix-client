@@ -1,3 +1,12 @@
+//import react bootstrap
+//@import "bootstrap/dist/css/bootstrap.min.css"; //CSS
+
+$primary: SeaGreen;
+$body-bg: Honeydew;
+
+@import '~bootstrap/scss/bootstrap.scss'; // sass
+
+
 $color: steelblue;
 
 .my-flix {
