@@ -61,7 +61,7 @@ export const SignupView = () => {
               />
           </Form.Group>
           <Form.Group controlId="formEmail">
-            <Form.Label>Username:</Form.Label>
+            <Form.Label>Email:</Form.Label>
             <Form.Control
               type="email"
               value={email}
