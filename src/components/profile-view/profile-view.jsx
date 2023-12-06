@@ -10,12 +10,13 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
     const [username, setUsername] = useState(user.Username);
     const [email, setEmail] = useState(user.Email);
     const [birthday, setBirthday] = useState(user.Birthday);
+    const [bio, setBio] = useState(user.Bio);
 
     // Navigate
     const navigate = useNavigate();
 
     // Return list of favorite Movies
-    const favoriteMovieList = movies.filter(m => user.FavoriteMovies.includes(m._id));
+    const favoriteMovieList = movies.filter(movie => user.FavoriteMovies.includes(movie._id));
 
     // Token
     const token = localStorage.getItem('token');
@@ -30,7 +31,8 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
         const data ={
             Username: username,
             Email: email,
-            Birthday: birthday
+            Birthday: birthday,
+            Bio: bio
         }
 
         fetch(`https://hunkrowganmovieapi.onrender.com/users/${user.Username}`, {
@@ -46,9 +48,9 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
                 const updatedUser = await response.json();
                 localStorage.setItem('user', JSON.stringify(updatedUser));
                 setUser(updatedUser);
-                alert("Update was successful");
+                alert("Profile update successful");
             } else {
-                alert("Update failed")
+                alert("Profile update failed")
             }
         }).catch(error => {
             console.error('Error: ', error);
@@ -87,6 +89,7 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
                             <Card.Text>Username:{user.Username}</Card.Text>
                             <Card.Text>Email: {user.Email}</Card.Text>
                             <Card.Text>Birthday: {moment(user.Birthday).utc().format('YYYY-MM-DD')}</Card.Text>
+                            <Card.Text>Bio: {user.Bio}</Card.Text>
                         </Card.Body>
                     </Card>
                 </Col>
@@ -118,6 +121,15 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
                             type="date"
                             value={birthday}
                             onChange={(e) => setBirthday(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Form.Group controlId="formBio">
+                            <Form.Label>Bio:</Form.Label>
+                            <Form.Control
+                            className="mb-2"
+                            type="string"
+                            value={bio}
+                            onChange={(e) => setBio(e.target.value)}
                             />
                         </Form.Group>
                         <Button type="submit" onClick={handleUpdate} className="mt-3 me-2">Update</Button>

@@ -4,35 +4,36 @@ import { Link } from "react-router-dom";
 
 export const NavigationBar = ({user, onLoggedOut}) => {
     return (
-       <Navbar className="my-navbar shadow-lg ">
-        <Container>
-        <Navbar.Brand> {/*insert image*/}
-        </Navbar.Brand>
-          <Nav className="me-auto">
+<Navbar className="my-navbar shadow-lg ">
+       
+       <Navbar.Brand> PLACEHOLDER
+       </Navbar.Brand>
+       <Navbar.Collapse className="justify-content-end">
+         <Nav>
+           {!user && (
+             <>
+               <Nav.Link className="nav-link" as={Link} to="/login">
+                 Login
+               </Nav.Link>
+               <Nav.Link className="nav-link" as={Link} to="/signup">
+                 Signup
+               </Nav.Link>
+             </>
+           )}
 
-            {!user && (
-              <>
-                <Nav.Link as={Link} to="/login">
-                  Login
-                </Nav.Link>
-                <Nav.Link as={Link} to="/signup">
-                  Signup
-                </Nav.Link>
-              </>
-            )}
-
-            {user && (
-              <>
-                <Nav.Link as={Link} to="/">
-                  Home
-                </Nav.Link>
-                <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
-              </>
-            )}
-
-          </Nav>
-        </Container>
-       </Navbar>
+     </Nav> 
+     </Navbar.Collapse >
+     <Nav >
+           {user && (
+             <>
+               <Nav.Link className="nav-link" as={Link} to="/">Home</Nav.Link>
+               <Nav.Link className="nav-link" as={Link} to="/profile">My Profile</Nav.Link>
+               <Nav.Link className="nav-link" onClick={onLoggedOut}>Logout</Nav.Link>
+             </>
+           )}
+           
+     </Nav>
+      </Navbar>
 
     )
 }
