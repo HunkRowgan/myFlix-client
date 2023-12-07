@@ -16,7 +16,7 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
     const navigate = useNavigate();
 
     // Return list of favorite Movies
-    const favoriteMovieList = movies.filter(movie => user.FavoriteMovies.includes(movie._id));
+    const favoriteMovieList = movies.filter(movie => user.FavoriteMovies.includes(movie.id));
 
     // Token
     const token = localStorage.getItem('token');

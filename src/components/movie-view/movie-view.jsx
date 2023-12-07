@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 export const MovieView = ({ movies }) => {
   // Destructure movieId from the useParams object
   const { movieId } = useParams();
-  const selectedMovie = movies.find((movie) => movie._id === movieId);
+  const selectedMovie = movies.find((movie) => movie.id === movieId);
   
   console.log(movieId);
   

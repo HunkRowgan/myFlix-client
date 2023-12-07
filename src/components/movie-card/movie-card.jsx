@@ -8,21 +8,27 @@ import { useEffect, useState } from "react";
 export const MovieCard = ({ movie, token, user, setUser }) => {
   console.log(movie);
  
-  const [isFavorite, setIsFavorite] = useState(
+  const [setIsFavorite] = useState(
     false
   );
 
-// add & remove favoriteMovie
 useEffect(() => {
-  if (user.FavoriteMovies && user.FavoriteMovies.includes(movie._id)) {
+  if (user && user.FavoriteMovies && user.FavoriteMovies.includes(movie.id)) {
     setIsFavorite(true);
   }
-}, [user]);
+}, [user, movie.id]);
+
 
 const addFavoriteMovie = () => {
-  console.log('Adding favorite movie:', user.Username, movie._id);
+  // Check if user is defined and has the 'Username' property
+  if (!user || !user.Username) {
+    console.error("User information is missing or invalid.");
+    return;
+  }
+
+  console.log('Adding favorite movie:', user.Username, movie.id);
   fetch(
-    `https://hunkrowganmovieapi.onrender.com/users/${user.Username}/movies/${movie._id}`,
+    `https://hunkrowganmovieapi.onrender.com/users/${user.Username}/movies/${movie.id}`,
     { method: "POST", headers: { Authorization: `Bearer ${token}` } }
   )
     .then((response) => {
@@ -32,11 +38,11 @@ const addFavoriteMovie = () => {
         console.log("Failed to add fav movie");
       }
     })
-    .then((user) => {
-      if (user) {
-        alert("successfully added to favorites");
-        localStorage.setItem("user", JSON.stringify(user));
-        setUser(user);
+    .then((updatedUser) => {
+      if (updatedUser) {
+        alert("Successfully added to favorites");
+        localStorage.setItem("user", JSON.stringify(updatedUser));
+        setUser(updatedUser);
         setIsFavorite(true);
       }
     })
@@ -45,28 +51,34 @@ const addFavoriteMovie = () => {
     });
 };
 
+
 const removeFavoriteMovie = () => {
+  // Check if user is defined and has the 'Username' property
+  if (!user || !user.Username) {
+    console.error("User information is missing or invalid.");
+    return;
+  }
+
   fetch(
-    `https://hunkrowganmovieapi.onrender.com/users/${user.Username}/movies/${movie._id}`,
+    `https://hunkrowganmovieapi.onrender.com/users/${user.Username}/movies/${movie.id}`,
     { method: "DELETE", headers: { Authorization: `Bearer ${token}` } }
   )
     .then((response) => {
       if (response.ok) {
         return response.json();
       } else {
-        alert("Failed");
+        console.log("Failed to remove fav movie");
+        throw new Error("Failed to remove fav movie");
       }
     })
-    .then((user) => {
-      if (user) {
-        alert("successfully deleted from favorites");
-        localStorage.setItem("user", JSON.stringify(user));
-        setUser(user);
-        setIsFavorite(false);
-      }
+    .then((updatedUser) => {
+      alert("Successfully deleted from favorites");
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+      setUser(updatedUser);
+      setIsFavorite(false);
     })
     .catch((error) => {
-      alert(error);
+      alert(error.message);
     });
 };
 
@@ -95,17 +107,14 @@ const removeFavoriteMovie = () => {
       <Card.Body>
         <Card.Title>{movie.Title}</Card.Title>
         <Card.Text>{movie.Description}</Card.Text>
-        <Link to={`/movies/${encodeURIComponent(movie._id)}`}>    
+        <Link to={`/movies/${encodeURIComponent(movie.id)}`}>    
         <Button className='close-open-button'>Open</Button>
         </Link>
       </Card.Body>
       <Card.Body className="favorite-btns">
-        {!isFavorite ? (
-          <Button className="fav-btn" onClick={addFavoriteMovie}>+</Button>
-        ) : (
-          <Button className="fav-btn" onClick={removeFavoriteMovie}>-</Button>
-        )}
-      </Card.Body>
+  <Button className="fav-btn" onClick={addFavoriteMovie}>+</Button>
+  <Button className="fav-btn" onClick={removeFavoriteMovie}>-</Button>
+</Card.Body>
     </Card>
   );
 };
