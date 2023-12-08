@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 export const MovieCard = ({ movie, token, user, setUser }) => {
   console.log(movie);
  
-  const [setIsFavorite] = useState(
+  const [isFavourite, setIsFavorite] = useState(
     false
   );
 
