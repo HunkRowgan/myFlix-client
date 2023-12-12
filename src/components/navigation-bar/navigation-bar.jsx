@@ -6,7 +6,7 @@ export const NavigationBar = ({user, onLoggedOut}) => {
     return (
 <Navbar className="my-navbar shadow-lg ">
        
-       <Navbar.Brand> PLACEHOLDER
+       <Navbar.Brand> MYFLIX
        </Navbar.Brand>
        <Navbar.Collapse className="justify-content-end">
          <Nav>
