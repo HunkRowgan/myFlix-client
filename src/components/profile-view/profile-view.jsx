@@ -148,7 +148,7 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
                                 movie={movie}
                                 removeFav={removeFav}
                                 addFav={addFav}
-                                isFavorite={user.FavoriteMovies.includes(movie._id)}
+                                isFavorite={user.FavoriteMovies.includes(movie.id)}
                             />
                         </Col>
                     ))
