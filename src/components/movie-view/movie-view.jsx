@@ -33,10 +33,10 @@ export const MovieView = ({ movies }) => {
                     <span className='text-title'>Description:</span> {selectedMovie && selectedMovie.Description}
                   </Card.Text>
                   <Card.Text>
-                    <span className='text-title'>Genre:</span> {selectedMovie && selectedMovie.Genre.Name}
+                    <span className='text-title'>Genre:</span> {selectedMovie && selectedMovie.Genre}
                   </Card.Text>
                   <Card.Text>
-                    <span className='text-title'>Director:</span> {selectedMovie && selectedMovie.Director.Name}
+                    <span className='text-title'>Director:</span> {selectedMovie && selectedMovie.Director}
                   </Card.Text>
                   <Link to='/'>
                     <Button className='close-open-button'>Back</Button>

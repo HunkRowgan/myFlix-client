@@ -11,6 +11,7 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
     const [email, setEmail] = useState(user.Email);
     const [birthday, setBirthday] = useState(user.Birthday);
     const [bio, setBio] = useState(user.Bio);
+    const [password, setPassword] = useState("user.Password");
 
     // Navigate
     const navigate = useNavigate();
@@ -30,11 +31,14 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
 
         const data ={
             Username: username,
+            Password: password,
             Email: email,
             Birthday: birthday,
             Bio: bio
         }
 
+            console.log(data);
+            
         fetch(`https://hunkrowganmovieapi.onrender.com/users/${user.Username}`, {
             method: "PUT",
             body: JSON.stringify(data),
@@ -102,6 +106,16 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
                             type="text"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
+                            minLength="5"
+                            />
+                        </Form.Group>
+                        <Form.Group controlId="formPassword">
+                            <Form.Label>Password:</Form.Label>
+                            <Form.Control
+                            className="mb-3"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                             minLength="5"
                             />
                         </Form.Group>
