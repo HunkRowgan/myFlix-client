@@ -12,4 +12,4 @@ React Bootstrap
 MongoDB
 Node.js
 Express
-Curious to explore the outcome? Click on the logo to see it in action!
+Curious to explore the outcome? Go to https://myflix-rowgan.netlify.app/ to check it out.
