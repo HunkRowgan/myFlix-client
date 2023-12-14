@@ -117,9 +117,10 @@ const removeFavoriteMovie = () => {
         </Link>
       </Card.Body>
       <Card.Body className="favorite-btns">
-  <Button className="fav-btn" onClick={addFavoriteMovie}>+</Button>
-  <Button className="fav-btn" onClick={removeFavoriteMovie}>-</Button>
-</Card.Body>
+        <Card.Title>Favorites</Card.Title>
+        <Button className="fav-btn" onClick={addFavoriteMovie}>+</Button>
+        <Button className="fav-btn" onClick={removeFavoriteMovie}>-</Button>
+      </Card.Body>
     </Card>
   );
 };

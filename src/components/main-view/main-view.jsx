@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar.jsx";
 import { ProfileView } from "../profile-view/profile-view.jsx";
-import { Button, Container, Row, Col } from 'react-bootstrap';
+import { Button, Container, Row, Col, Form } from 'react-bootstrap';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 export const MainView = () => {
@@ -15,6 +15,7 @@ export const MainView = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
+  const [searchInput, setSearchInput] = useState('');
 
   useEffect(() => {
     if (!token) {
@@ -38,11 +39,15 @@ export const MainView = () => {
       });
   }, [token]);
 
+  // Filter movies based on search input
+  const filteredMovies = movies.filter((movie) =>
+    movie.Title.toLowerCase().includes(searchInput.toLowerCase())
+  );
+
   return (
     <BrowserRouter>
       <NavigationBar
         user={user}
-        
         onLoggedOut={() => {
           setUser(null);
           localStorage.clear();
@@ -113,29 +118,45 @@ export const MainView = () => {
                   <Col>The list is empty!</Col>
                 ) : (
                   <>
-                <Row>
-                  <Col>
-                  {/*<SearchView onSearch={handleSearch} />*/}
-                  </Col>
-                </Row>
-                 
-                    {movies.map((movie) => (
-                      <Col
-                        key={movie._id}
-                        md={3}
-                        className="mx-2 my-3 justify-content-md-center"
-                      >
-                        <MovieCard movie={movie} 
-                                   user={user}
-													         token={token}
-													         setUser={setUser} />
+                    <Row>
+                      <Col>
+                        <Form.Group controlId="searchInput">
+                          <Form.Control
+                            type="text"
+                            placeholder="Search movies..."
+                            value={searchInput}
+                            onChange={(e) => setSearchInput(e.target.value)}
+                          />
+                        </Form.Group>
                       </Col>
-                    ))}
+                    </Row>
+
+                    {filteredMovies.length === 0 ? (
+                      <Col>No movies found.</Col>
+                    ) : (
+                      <>
+                        {filteredMovies.map((movie) => (
+                          <Col
+                            key={movie.id}
+                            md={3}
+                            className="mx-2 my-3 justify-content-md-center"
+                          >
+                            <MovieCard
+                              movie={movie}
+                              user={user}
+                              token={token}
+                              setUser={setUser}
+                            />
+                          </Col>
+                        ))}
+                      </>
+                    )}
                   </>
                 )}
               </>
             }
           />
+
           <Route
             path="/profile"
             element={
@@ -146,9 +167,9 @@ export const MainView = () => {
                   <Col>
                     <Row>
                       <ProfileView
-                       user={user}
-                       token={token}
-                       setUser={setUser}
+                        user={user}
+                        token={token}
+                        setUser={setUser}
                         movies={movies}
                         onDelete={() => {
                           setUser(null);
