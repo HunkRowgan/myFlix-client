@@ -3,6 +3,7 @@ import { Button, Card } from "react-bootstrap";
 import { useBootstrapBreakpoints } from "react-bootstrap/esm/ThemeProvider";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { getImageUrl } from "../movie-view/movie-view.jsx";
 
 //movieCard function component
 export const MovieCard = ({ movie, token, user, setUser }) => {
@@ -103,7 +104,11 @@ const removeFavoriteMovie = () => {
 
  //replace div with Card element
     <Card className="h-100">
-      <Card.Img variant="top" src={useBootstrapBreakpoints.image} />
+      <Card.Img
+      variant="top"
+      src={getImageUrl(movie.ImagePath)}
+      alt={movie.Title}
+       />
       <Card.Body>
         <Card.Title>{movie.Title}</Card.Title>
         <Card.Text>{movie.Description}</Card.Text>
