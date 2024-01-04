@@ -1,12 +1,14 @@
+//profile-view
+
 import { useState } from "react";
 import {useNavigate} from "react-router-dom";
 import { Col, Row, Container } from "react-bootstrap";
-import { Button, Card, Form } from "react-bootstrap";
+import { Button, Card, Form, Alert } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
 import { PersonSquare } from "react-bootstrap-icons";
 import moment from 'moment';
 
-export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
+export const ProfileView = ({ user, movies, setUser, toggleFavoriteMovie, addFavoriteMovie, removeFavoriteMovie }) => {
     const [username, setUsername] = useState(user.Username);
     const [email, setEmail] = useState(user.Email);
     const [birthday, setBirthday] = useState(user.Birthday);
@@ -21,6 +23,18 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
 
     // Token
     const token = localStorage.getItem('token');
+
+
+    const [alertMessage, setAlertMessage] = useState(null);
+
+    const showAlert = (message) => {
+      setAlertMessage(message);
+  
+      // Automatically hide the alert after 3 seconds
+      setTimeout(() => {
+        setAlertMessage(null);
+      }, 1000);
+    };
 
     // Update user info
     const handleUpdate = (event) => {
@@ -37,7 +51,7 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
             Bio: bio
         }
 
-            console.log(data);
+            //console.log(data);
             
         fetch(`https://hunkrowganmovieapi.onrender.com/users/${user.Username}`, {
             method: "PUT",
@@ -52,7 +66,7 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
                 const updatedUser = await response.json();
                 localStorage.setItem('user', JSON.stringify(updatedUser));
                 setUser(updatedUser);
-                alert("Profile update successful");
+                showAlert("Updated successfully!");
             } else {
                 alert("Profile update failed")
             }
@@ -148,6 +162,7 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
                         </Form.Group>
                         <Button type="submit" onClick={handleUpdate} className="mt-3 me-2">Update</Button>
                         <Button onClick={handleDelete} className="mt-3 bg-danger border-danger text-white">Delete User</Button>
+                        {alertMessage && <Alert variant="info" className="mb-3 mt-3">{alertMessage}</Alert>}
                     </Form>
                 </Col>
             </Row>
@@ -159,10 +174,12 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
                     favoriteMovieList?.map((movie) => (
                         <Col sm={7} md={5} lg={3} xl={2} className="mx-2 mt-2 mb-5 col-6 similar-movies-img" key={movie._id}>
                             <MovieCard
-                                movie={movie}
-                                removeFav={removeFav}
-                                addFav={addFav}
-                                isFavorite={user.FavoriteMovies.includes(movie.id)}
+                              user={user}
+                              movie={movie}
+                              token={token}
+                              setUser={setUser}
+                              isFavorite={user.FavoriteMovies.includes(movie.id)}
+                              toggleFavoriteMovie={() => toggleFavoriteMovie(movie.id)}
                             />
                         </Col>
                     ))

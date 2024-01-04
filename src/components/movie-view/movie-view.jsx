@@ -39,7 +39,7 @@ export const MovieView = ({ movies }) => {
             <Row>
               <Col>
                 <Card.Img
-                  className="w-100"
+                  className="card-image"
                   src={selectedMovie && getImageUrl(selectedMovie.ImagePath)}
                   style={{ width: "15rem", height: "20rem" }}
                   alt=""

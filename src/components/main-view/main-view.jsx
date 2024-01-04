@@ -118,7 +118,7 @@ export const MainView = () => {
                   <Col>The list is empty!</Col>
                 ) : (
                   <>
-                    <Row>
+                    <Row style={{padding: '10px'}}>
                       <Col>
                         <Form.Group controlId="searchInput">
                           <Form.Control
